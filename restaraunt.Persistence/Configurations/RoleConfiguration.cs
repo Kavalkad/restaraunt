@@ -27,7 +27,7 @@ namespace restaraunt.Persistence.Configurations
                     Name = r.ToString()
                 });
 
-            builder.HasData(roles);
+            //builder.HasData(roles);
         }
     }
 }

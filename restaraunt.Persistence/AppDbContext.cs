@@ -9,10 +9,9 @@ namespace restaraunt.Persistence
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext()
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+           
         }
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<OrderEntity> Orders { get; set; }
@@ -21,13 +20,14 @@ namespace restaraunt.Persistence
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=Users.db");
+           
             base.OnConfiguring(optionsBuilder);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
     }
 }
