@@ -30,6 +30,8 @@ services.AddScoped<UserService>();
 services.AddScoped<IJwtProvider, JwtProvider>();
 services.AddScoped<IPasswordHasher, PasswordHasher>();
 services.AddApiAuthentication(configuration);
+services.AddControllers();
+
 var app = builder.Build();
 
 app.UseSwagger();
@@ -47,6 +49,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapUsersEndpoints();
+app.MapControllers();
 app.MapGet("/", () => "Hello World!")
     .RequireAuthorization("AdminPolicy");
 

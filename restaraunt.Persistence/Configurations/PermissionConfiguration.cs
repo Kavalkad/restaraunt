@@ -19,6 +19,6 @@ public class PermissionConfiguration : IEntityTypeConfiguration<PermissionEntity
                 Name = p.ToString()
             });
 
-        builder.HasData(permissions);
+        //builder.HasData(permissions);
     }
 }
